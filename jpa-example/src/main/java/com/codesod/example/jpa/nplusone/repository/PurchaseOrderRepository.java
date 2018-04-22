@@ -13,30 +13,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.codesod.example.jpa.lazyload;
+package com.codesod.example.jpa.nplusone.repository;
 
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.codesod.example.jpa.nplusone.entity.PurchaseOrder;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import org.springframework.stereotype.Repository;
 
-import static lombok.AccessLevel.PRIVATE;
+import java.util.List;
 
 /**
  * @author MD Sayem Ahmed
  */
-@Data
-@NoArgsConstructor(access = PRIVATE)
-@AllArgsConstructor
-@Entity
-public class Customer {
+@Repository
+public interface PurchaseOrderRepository extends JpaRepository<PurchaseOrder, String>,
+        JpaSpecificationExecutor<PurchaseOrder> {
 
-  @Id
-  private String id;
-
-  private String name;
-  private String email;
+    List<PurchaseOrder> findByCustomerId(String customerId);
 }

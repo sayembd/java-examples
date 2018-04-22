@@ -13,14 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.codesod.example.jpa.lazyload;
-
-import lombok.Data;
+package com.codesod.example.jpa.nplusone.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import java.util.ArrayList;
 import java.util.List;
 
 import static javax.persistence.CascadeType.ALL;
@@ -28,16 +28,35 @@ import static javax.persistence.CascadeType.ALL;
 /**
  * @author MD Sayem Ahmed
  */
-@Data
 @Entity
-class OrderItem {
+public class PurchaseOrderItem {
 
-  @Id
-  private String id;
+    @Id
+    private String id;
 
-  @ManyToOne
-  private Product product;
+    private String bookId;
 
-  @OneToMany(cascade = ALL)
-  private List<DiscountItem> discountItems;
+    public PurchaseOrderItem(String id, String bookId) {
+        this.id = id;
+        this.bookId = bookId;
+    }
+
+    private PurchaseOrderItem() {}
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getBookId() {
+        return bookId;
+    }
+
+    public void setBookId(String bookId) {
+        this.bookId = bookId;
+    }
 }
+

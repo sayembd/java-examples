@@ -16,16 +16,12 @@
 package com.codesod.example.jpa.localdatetime;
 
 
-import java.time.LocalDateTime;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import lombok.Getter;
-import lombok.Setter;
+import java.time.LocalDateTime;
 
 @Entity
-@Getter
-@Setter
 public class Employee {
 
   @Id
@@ -34,4 +30,36 @@ public class Employee {
   private String name;
   private String department;
   private LocalDateTime joiningDate;
+
+  public Long getId() {
+    return id;
+  }
+
+  public void setId(Long id) {
+    this.id = id;
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public String getDepartment() {
+    return department;
+  }
+
+  public void setDepartment(String department) {
+    this.department = department;
+  }
+
+  public LocalDateTime getJoiningDate() {
+    return joiningDate;
+  }
+
+  public void setJoiningDate(LocalDateTime joiningDate) {
+    this.joiningDate = joiningDate;
+  }
 }

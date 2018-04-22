@@ -13,31 +13,27 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.codesod.example.jpa.lazyload;
+package com.codesod.example.jpa.nplusone.dto;
 
-import lombok.Data;
-
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import java.util.List;
-
-import static javax.persistence.CascadeType.ALL;
+import java.time.OffsetDateTime;
 
 /**
  * @author MD Sayem Ahmed
  */
-@Data
-@Entity
-public class Order {
+public class PurchaseOrderDTO {
+    private final String id;
+    private final OffsetDateTime orderDate;
 
-  @Id
-  private String id;
+    public PurchaseOrderDTO(String id, OffsetDateTime orderDate) {
+        this.id = id;
+        this.orderDate = orderDate;
+    }
 
-  @ManyToOne
-  private Customer customer;
+    public String getId() {
+        return id;
+    }
 
-  @OneToMany(cascade = ALL)
-  private List<OrderItem> orderItems;
+    public OffsetDateTime getOrderDate() {
+        return orderDate;
+    }
 }
