@@ -30,6 +30,13 @@ import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
+import static com.codesod.example.executor.MonitoredThreadPoolExecutor.MonitoringKey.activeThreads;
+import static com.codesod.example.executor.MonitoredThreadPoolExecutor.MonitoringKey.failedTasks;
+import static com.codesod.example.executor.MonitoredThreadPoolExecutor.MonitoringKey.maxPoolSize;
+import static com.codesod.example.executor.MonitoredThreadPoolExecutor.MonitoringKey.queueSize;
+import static com.codesod.example.executor.MonitoredThreadPoolExecutor.MonitoringKey.successfulTasks;
+import static com.codesod.example.executor.MonitoredThreadPoolExecutor.MonitoringKey.taskExecution;
+
 /**
  * @author MD Sayem Ahmed
  */
@@ -107,7 +114,7 @@ public class MonitoredThreadPoolExecutor extends ThreadPoolExecutor {
   @Override
   protected void beforeExecute(Thread thread, Runnable task) {
     super.beforeExecute(thread, task);
-    Timer timer = metricRegistry.timer(MetricRegistry.name(metricsPrefix, "task-execution"));
+    Timer timer = metricRegistry.timer(MetricRegistry.name(metricsPrefix, taskExecution));
     taskExecutionTimer.set(timer.time());
   }
 
@@ -129,19 +136,33 @@ public class MonitoredThreadPoolExecutor extends ThreadPoolExecutor {
       }
     }
     if (throwable != null) {
-      Counter failedTasksCounter = metricRegistry.counter(MetricRegistry.name(metricsPrefix, "failed-tasks"));
+      Counter failedTasksCounter = metricRegistry.counter(MetricRegistry.name(metricsPrefix, failedTasks));
       failedTasksCounter.inc();
     } else {
-      Counter successfulTasksCounter = metricRegistry.counter(MetricRegistry.name(metricsPrefix, "successful-tasks"));
+      Counter successfulTasksCounter = metricRegistry.counter(
+          MetricRegistry.name(metricsPrefix, successfulTasks));
       successfulTasksCounter.inc();
     }
   }
 
   private void registerGauges() {
-    metricRegistry.register(MetricRegistry.name(metricsPrefix, "corePoolSize"), (Gauge<Integer>) this::getCorePoolSize);
-    metricRegistry.register(MetricRegistry.name(metricsPrefix, "activeThreads"), (Gauge<Integer>) this::getActiveCount);
-    metricRegistry.register(MetricRegistry.name(metricsPrefix, "maxPoolSize"), (Gauge<Integer>)
-        this::getMaximumPoolSize);
-    metricRegistry.register(MetricRegistry.name(metricsPrefix, "queueSize"), (Gauge<Integer>) () -> getQueue().size());
+    metricRegistry.register(MetricRegistry.name(metricsPrefix, MonitoringKey.corePoolSize),
+        (Gauge<Integer>) this::getCorePoolSize);
+    metricRegistry.register(MetricRegistry.name(metricsPrefix, activeThreads),
+        (Gauge<Integer>) this::getActiveCount);
+    metricRegistry.register(MetricRegistry.name(metricsPrefix, maxPoolSize),
+        (Gauge<Integer>) this::getMaximumPoolSize);
+    metricRegistry.register(MetricRegistry.name(metricsPrefix, queueSize),
+        (Gauge<Integer>) () -> getQueue().size());
+  }
+
+  static class MonitoringKey {
+    static final String taskExecution = "task-execution";
+    static final String failedTasks = "failed-tasks";
+    static final String successfulTasks = "successful-tasks";
+    static final String corePoolSize = "corePoolSize";
+    static final String activeThreads = "activeThreads";
+    static final String maxPoolSize = "maxPoolSize";
+    static final String queueSize = "queueSize";
   }
 }
