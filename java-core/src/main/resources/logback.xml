@@ -1,0 +1,15 @@
+<configuration>
+
+  <!-- Appenders are the ones writing messages. They are referenced by loggers. -->
+  <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+
+    <!-- By default the type of the encoders are PatternLayoutEncoder -->
+    <encoder>
+      <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+    </encoder>
+  </appender>
+
+  <root level="info">
+    <appender-ref ref="stdout"/>
+  </root>
+</configuration>
