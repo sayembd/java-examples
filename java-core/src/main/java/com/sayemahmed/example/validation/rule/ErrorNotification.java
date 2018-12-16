@@ -18,8 +18,6 @@ package com.sayemahmed.example.validation.rule;
 import java.util.ArrayList;
 import java.util.List;
 
-import static java.util.stream.Collectors.joining;
-
 /**
  * @author MD Sayem Ahmed
  */
@@ -35,8 +33,7 @@ public class ErrorNotification {
   }
 
   public String getAllErrors() {
-    return errors.stream()
-        .collect(joining(", "));
+    return String.join(", ", errors);
   }
 
   void addError(String message) {
