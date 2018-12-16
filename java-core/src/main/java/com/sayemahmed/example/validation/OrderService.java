@@ -13,10 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.codesod.example.validation;
+package com.sayemahmed.example.validation;
 
-import com.codesod.example.validation.rule.ErrorNotification;
-import com.codesod.example.validation.rule.OrderItemValidator;
+import com.sayemahmed.example.validation.rule.ErrorNotification;
+import com.sayemahmed.example.validation.rule.OrderItemValidator;
 
 import org.springframework.stereotype.Service;
 

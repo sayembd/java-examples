@@ -13,10 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.codesod.example.validation.rule;
+package com.sayemahmed.example.validation.rule;
 
-import com.codesod.example.validation.MenuRepository;
-import com.codesod.example.validation.OrderDTO.OrderItem;
+import com.sayemahmed.example.validation.MenuRepository;
+import com.sayemahmed.example.validation.OrderDTO.OrderItem;
 
 import java.util.Optional;
 import java.util.function.Consumer;

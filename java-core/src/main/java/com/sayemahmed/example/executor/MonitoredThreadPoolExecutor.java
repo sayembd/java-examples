@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.codesod.example.executor;
+package com.sayemahmed.example.executor;
 
 import com.codahale.metrics.Counter;
 import com.codahale.metrics.Gauge;
@@ -30,12 +30,12 @@ import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
-import static com.codesod.example.executor.MonitoredThreadPoolExecutor.MonitoringKey.activeThreads;
-import static com.codesod.example.executor.MonitoredThreadPoolExecutor.MonitoringKey.failedTasks;
-import static com.codesod.example.executor.MonitoredThreadPoolExecutor.MonitoringKey.maxPoolSize;
-import static com.codesod.example.executor.MonitoredThreadPoolExecutor.MonitoringKey.queueSize;
-import static com.codesod.example.executor.MonitoredThreadPoolExecutor.MonitoringKey.successfulTasks;
-import static com.codesod.example.executor.MonitoredThreadPoolExecutor.MonitoringKey.taskExecution;
+import static com.sayemahmed.example.executor.MonitoredThreadPoolExecutor.MonitoringKey.activeThreads;
+import static com.sayemahmed.example.executor.MonitoredThreadPoolExecutor.MonitoringKey.failedTasks;
+import static com.sayemahmed.example.executor.MonitoredThreadPoolExecutor.MonitoringKey.maxPoolSize;
+import static com.sayemahmed.example.executor.MonitoredThreadPoolExecutor.MonitoringKey.queueSize;
+import static com.sayemahmed.example.executor.MonitoredThreadPoolExecutor.MonitoringKey.successfulTasks;
+import static com.sayemahmed.example.executor.MonitoredThreadPoolExecutor.MonitoringKey.taskExecution;
 
 /**
  * @author MD Sayem Ahmed

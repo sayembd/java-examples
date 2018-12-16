@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.codesod.example.validation.rule;
+package com.sayemahmed.example.validation.rule;
 
-import com.codesod.example.validation.OrderDTO.OrderItem;
+import com.sayemahmed.example.validation.OrderDTO;
 
 import java.math.BigDecimal;
 import java.util.Optional;
@@ -26,10 +26,10 @@ class PriceValidator implements OrderItemValidator {
   static final String PRICE_INVALID_ERROR_FORMAT = "Given price [%s] is not in valid format";
 
   @Override
-  public ErrorNotification validate(OrderItem orderItem) {
+  public ErrorNotification validate(OrderDTO.OrderItem orderItem) {
     ErrorNotification errorNotification = new ErrorNotification();
     Optional.ofNullable(orderItem)
-        .map(OrderItem::getPrice)
+        .map(OrderDTO.OrderItem::getPrice)
         .map(String::trim)
         .filter(itemPrice -> !itemPrice.isEmpty())
         .ifPresentOrElse(

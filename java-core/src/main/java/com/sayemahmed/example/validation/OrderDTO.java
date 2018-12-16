@@ -13,25 +13,34 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.codesod.example.validation.rule;
+package com.sayemahmed.example.validation;
 
-import com.codesod.example.validation.MenuRepository;
+import java.util.List;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
+@Getter
+@Setter
+@ToString
+public class OrderDTO {
 
-import java.util.Arrays;
+  @NotNull
+  private String customerId;
 
-@Configuration
-class ValidatorConfiguration {
+  @NotNull
+  @Size(min = 1)
+  private List<OrderItem> orderItems;
 
-  @Bean
-  OrderItemValidator orderItemValidator(MenuRepository menuRepository) {
-    return new OrderItemValidatorComposite(Arrays.asList(
-        new MenuValidator(menuRepository),
-        new ItemDescriptionValidator(),
-        new PriceValidator(),
-        new QuantityValidator()
-    ));
+  @Getter
+  @Setter
+  @ToString
+  public static class OrderItem {
+    private String menuId;
+    private String description;
+    private String price;
+    private Integer quantity;
   }
 }

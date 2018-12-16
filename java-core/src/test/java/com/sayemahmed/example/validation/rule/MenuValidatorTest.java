@@ -13,10 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.codesod.example.validation.rule;
+package com.sayemahmed.example.validation.rule;
 
-import com.codesod.example.validation.MenuRepository;
-import com.codesod.example.validation.OrderDTO.OrderItem;
+import com.sayemahmed.example.validation.MenuRepository;
+import com.sayemahmed.example.validation.OrderDTO;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Matchers.any;
@@ -29,7 +29,7 @@ public class MenuValidatorTest {
 
   @Test
   public void validate_menuIdInvalid_invalid() {
-    OrderItem orderItem = new OrderItem();
+    OrderDTO.OrderItem orderItem = new OrderDTO.OrderItem();
     String menuId = "some menu id";
     orderItem.setMenuId(menuId);
     MenuRepository menuRepository = mock(MenuRepository.class);
@@ -48,7 +48,7 @@ public class MenuValidatorTest {
     when(menuRepository.menuExists(any())).thenReturn(true);
     MenuValidator validator = new MenuValidator(menuRepository);
 
-    ErrorNotification errorNotification = validator.validate(new OrderItem());
+    ErrorNotification errorNotification = validator.validate(new OrderDTO.OrderItem());
 
     assertThat(errorNotification.getAllErrors())
         .isEqualTo(MenuValidator.MISSING_MENU_ERROR);
@@ -56,7 +56,7 @@ public class MenuValidatorTest {
 
   @Test
   public void validate_menuIdIsBlank_invalid() {
-    OrderItem orderItem = new OrderItem();
+    OrderDTO.OrderItem orderItem = new OrderDTO.OrderItem();
     orderItem.setMenuId("       \t");
     MenuRepository menuRepository = mock(MenuRepository.class);
     when(menuRepository.menuExists(any())).thenReturn(true);
@@ -70,7 +70,7 @@ public class MenuValidatorTest {
 
   @Test
   public void validate_menuIdValid_validated() {
-    OrderItem orderItem = new OrderItem();
+    OrderDTO.OrderItem orderItem = new OrderDTO.OrderItem();
     String menuId = "some menu id";
     orderItem.setMenuId(menuId);
     MenuRepository menuRepository = mock(MenuRepository.class);

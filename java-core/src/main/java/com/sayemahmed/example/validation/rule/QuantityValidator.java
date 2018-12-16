@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.codesod.example.validation.rule;
+package com.sayemahmed.example.validation.rule;
 
-import com.codesod.example.validation.OrderDTO.OrderItem;
+import com.sayemahmed.example.validation.OrderDTO;
 
 import java.util.Optional;
 import java.util.function.Consumer;
@@ -25,10 +25,10 @@ class QuantityValidator implements OrderItemValidator {
   static final String INVALID_QUANTITY_ERROR = "Given quantity %s is not valid.";
 
   @Override
-  public ErrorNotification validate(OrderItem orderItem) {
+  public ErrorNotification validate(OrderDTO.OrderItem orderItem) {
     ErrorNotification errorNotification = new ErrorNotification();
     Optional.ofNullable(orderItem)
-        .map(OrderItem::getQuantity)
+        .map(OrderDTO.OrderItem::getQuantity)
         .ifPresentOrElse(
             validateQuantity(errorNotification),
             () -> errorNotification.addError(MISSING_QUANTITY_ERROR)

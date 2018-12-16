@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.codesod.example.validation.rule;
+package com.sayemahmed.example.validation.rule;
 
-import com.codesod.example.validation.OrderDTO.OrderItem;
+import com.sayemahmed.example.validation.OrderDTO;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -27,7 +27,7 @@ public class ItemDescriptionValidatorTest {
   public void validate_descriptionIsNull_invalid() {
     ItemDescriptionValidator validator = new ItemDescriptionValidator();
 
-    ErrorNotification errorNotification = validator.validate(new OrderItem());
+    ErrorNotification errorNotification = validator.validate(new OrderDTO.OrderItem());
 
     assertThat(errorNotification.getAllErrors())
         .isEqualTo(ItemDescriptionValidator.MISSING_ITEM_DESCRIPTION);
@@ -35,7 +35,7 @@ public class ItemDescriptionValidatorTest {
 
   @Test
   public void validate_descriptionIsBlank_invalid() {
-    OrderItem orderItem = new OrderItem();
+    OrderDTO.OrderItem orderItem = new OrderDTO.OrderItem();
     orderItem.setDescription("     ");
     ItemDescriptionValidator validator = new ItemDescriptionValidator();
 
@@ -47,7 +47,7 @@ public class ItemDescriptionValidatorTest {
 
   @Test
   public void validate_descriptionGiven_valid() {
-    OrderItem orderItem = new OrderItem();
+    OrderDTO.OrderItem orderItem = new OrderDTO.OrderItem();
     orderItem.setDescription("dummy description");
     ItemDescriptionValidator validator = new ItemDescriptionValidator();
 

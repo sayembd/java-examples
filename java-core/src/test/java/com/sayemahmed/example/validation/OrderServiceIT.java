@@ -13,9 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.codesod.example.validation;
-
-import com.codesod.example.validation.OrderDTO.OrderItem;
+package com.sayemahmed.example.validation;
 
 import static org.assertj.core.api.Assertions.assertThatIllegalArgumentException;
 
@@ -36,7 +34,7 @@ public class OrderServiceIT {
 
   @Test
   public void createOrder_orderValid_noError() {
-    OrderItem orderItem = createOrderItem();
+    OrderDTO.OrderItem orderItem = createOrderItem();
     OrderDTO orderDTO = createOrder(orderItem);
 
     orderService.createOrder(orderDTO);
@@ -44,7 +42,7 @@ public class OrderServiceIT {
 
   @Test
   public void createOrder_priceInvalid_error() {
-    OrderItem orderItem = createOrderItem();
+    OrderDTO.OrderItem orderItem = createOrderItem();
     orderItem.setPrice("string");
     OrderDTO orderDTO = createOrder(orderItem);
 
@@ -54,7 +52,7 @@ public class OrderServiceIT {
 
   @Test
   public void createOrder_descriptionInvalid_error() {
-    OrderItem orderItem = createOrderItem();
+    OrderDTO.OrderItem orderItem = createOrderItem();
     orderItem.setDescription(null);
     OrderDTO orderDTO = createOrder(orderItem);
 
@@ -64,7 +62,7 @@ public class OrderServiceIT {
 
   @Test
   public void createOrder_quantityInvalid_error() {
-    OrderItem orderItem = createOrderItem();
+    OrderDTO.OrderItem orderItem = createOrderItem();
     orderItem.setQuantity(0);
     OrderDTO orderDTO = createOrder(orderItem);
 
@@ -74,7 +72,7 @@ public class OrderServiceIT {
 
   @Test
   public void createOrder_menuInvalid_error() {
-    OrderItem orderItem = createOrderItem();
+    OrderDTO.OrderItem orderItem = createOrderItem();
     orderItem.setMenuId(null);
     OrderDTO orderDTO = createOrder(orderItem);
 
@@ -82,15 +80,15 @@ public class OrderServiceIT {
         .isThrownBy(() -> orderService.createOrder(orderDTO));
   }
 
-  private OrderDTO createOrder(OrderItem orderItem) {
+  private OrderDTO createOrder(OrderDTO.OrderItem orderItem) {
     OrderDTO orderDTO = new OrderDTO();
     orderDTO.setCustomerId("customer id");
     orderDTO.setOrderItems(Collections.singletonList(orderItem));
     return orderDTO;
   }
 
-  private OrderItem createOrderItem() {
-    OrderItem orderItem = new OrderItem();
+  private OrderDTO.OrderItem createOrderItem() {
+    OrderDTO.OrderItem orderItem = new OrderDTO.OrderItem();
     orderItem.setPrice("101");
     orderItem.setDescription("Item description goes here");
     orderItem.setMenuId("menu id");

@@ -13,33 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.codesod.example.validation.rule;
+package com.sayemahmed.example.validation;
 
-import static java.util.stream.Collectors.joining;
+import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
-import java.util.List;
+import lombok.extern.slf4j.Slf4j;
 
-/**
- * @author MD Sayem Ahmed
- */
-public class ErrorNotification {
-  private List<String> errors = new ArrayList<>();
+@Repository
+@Slf4j
+public class MenuRepository {
 
-  public void addAll(ErrorNotification errorNotification) {
-    this.errors.addAll(errorNotification.errors);
-  }
-
-  public boolean hasError() {
-    return !errors.isEmpty();
-  }
-
-  public String getAllErrors() {
-    return errors.stream()
-        .collect(joining(", "));
-  }
-
-  void addError(String message) {
-    this.errors.add(message);
+  public boolean menuExists(String menuId) {
+    log.info("Menu id {}.", menuId);
+    return true;
   }
 }

@@ -13,18 +13,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.codesod.example.validation;
+package com.sayemahmed.example.validation.rule;
 
-import org.springframework.stereotype.Repository;
+import com.sayemahmed.example.validation.MenuRepository;
 
-import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
-@Repository
-@Slf4j
-public class MenuRepository {
+import java.util.Arrays;
 
-  public boolean menuExists(String menuId) {
-    log.info("Menu id {}.", menuId);
-    return true;
+@Configuration
+class ValidatorConfiguration {
+
+  @Bean
+  OrderItemValidator orderItemValidator(MenuRepository menuRepository) {
+    return new OrderItemValidatorComposite(Arrays.asList(
+        new MenuValidator(menuRepository),
+        new ItemDescriptionValidator(),
+        new PriceValidator(),
+        new QuantityValidator()
+    ));
   }
 }

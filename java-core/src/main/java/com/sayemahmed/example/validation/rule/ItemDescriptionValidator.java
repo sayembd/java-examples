@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.codesod.example.validation.rule;
+package com.sayemahmed.example.validation.rule;
 
-import com.codesod.example.validation.OrderDTO.OrderItem;
+import com.sayemahmed.example.validation.OrderDTO;
 
 import java.util.Optional;
 
@@ -23,10 +23,10 @@ class ItemDescriptionValidator implements OrderItemValidator {
   static final String MISSING_ITEM_DESCRIPTION = "Item description should be provided";
 
   @Override
-  public ErrorNotification validate(OrderItem orderItem) {
+  public ErrorNotification validate(OrderDTO.OrderItem orderItem) {
     ErrorNotification errorNotification = new ErrorNotification();
     Optional.ofNullable(orderItem)
-        .map(OrderItem::getDescription)
+        .map(OrderDTO.OrderItem::getDescription)
         .map(String::trim)
         .filter(description -> !description.isEmpty())
         .ifPresentOrElse(

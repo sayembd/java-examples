@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.codesod.example.validation.rule;
+package com.sayemahmed.example.validation.rule;
 
-import com.codesod.example.validation.OrderDTO.OrderItem;
+import com.sayemahmed.example.validation.OrderDTO;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -27,7 +27,7 @@ public class QuantityValidatorTest {
   public void validate_quantityIsNull_invalid() {
     QuantityValidator validator = new QuantityValidator();
 
-    ErrorNotification errorNotification = validator.validate(new OrderItem());
+    ErrorNotification errorNotification = validator.validate(new OrderDTO.OrderItem());
 
     assertThat(errorNotification.getAllErrors())
         .isEqualTo(QuantityValidator.MISSING_QUANTITY_ERROR);
@@ -35,7 +35,7 @@ public class QuantityValidatorTest {
 
   @Test
   public void validate_quantityIsZero_invalid() {
-    OrderItem orderItem = new OrderItem();
+    OrderDTO.OrderItem orderItem = new OrderDTO.OrderItem();
     int quantity = 0;
     orderItem.setQuantity(quantity);
     QuantityValidator validator = new QuantityValidator();
@@ -48,7 +48,7 @@ public class QuantityValidatorTest {
 
   @Test
   public void validate_quantityNegative_invalid() {
-    OrderItem orderItem = new OrderItem();
+    OrderDTO.OrderItem orderItem = new OrderDTO.OrderItem();
     int quantity = -1;
     orderItem.setQuantity(quantity);
     QuantityValidator validator = new QuantityValidator();
@@ -61,7 +61,7 @@ public class QuantityValidatorTest {
 
   @Test
   public void validate_quantityValid_validated() {
-    OrderItem orderItem = new OrderItem();
+    OrderDTO.OrderItem orderItem = new OrderDTO.OrderItem();
     orderItem.setQuantity(5);
     QuantityValidator validator = new QuantityValidator();
 

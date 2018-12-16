@@ -13,10 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.codesod.example.validation.rule;
+package com.sayemahmed.example.validation.rule;
 
-import com.codesod.example.validation.OrderDTO.OrderItem;
+import com.sayemahmed.example.validation.OrderDTO;
 
 public interface OrderItemValidator {
-  ErrorNotification validate(OrderItem orderItem);
+  ErrorNotification validate(OrderDTO.OrderItem orderItem);
 }

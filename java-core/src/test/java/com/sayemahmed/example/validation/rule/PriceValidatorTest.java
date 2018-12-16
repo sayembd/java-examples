@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.codesod.example.validation.rule;
+package com.sayemahmed.example.validation.rule;
 
-import com.codesod.example.validation.OrderDTO.OrderItem;
+import com.sayemahmed.example.validation.OrderDTO;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -27,14 +27,14 @@ public class PriceValidatorTest {
   public void validate_priceNull_invalid() {
     PriceValidator validator = new PriceValidator();
 
-    ErrorNotification errorNotification = validator.validate(new OrderItem());
+    ErrorNotification errorNotification = validator.validate(new OrderDTO.OrderItem());
 
     assertThat(errorNotification.getAllErrors()).isEqualTo(PriceValidator.PRICE_EMPTY_ERROR);
   }
 
   @Test
   public void validate_priceBlank_invalid() {
-    OrderItem orderItem = new OrderItem();
+    OrderDTO.OrderItem orderItem = new OrderDTO.OrderItem();
     orderItem.setPrice(" ");
     PriceValidator validator = new PriceValidator();
 
@@ -45,7 +45,7 @@ public class PriceValidatorTest {
 
   @Test
   public void validate_priceFormatNotValid_invalid() {
-    OrderItem orderItem = new OrderItem();
+    OrderDTO.OrderItem orderItem = new OrderDTO.OrderItem();
     String price = "dummy price";
     orderItem.setPrice(price);
     PriceValidator validator = new PriceValidator();
@@ -58,7 +58,7 @@ public class PriceValidatorTest {
 
   @Test
   public void validate_priceValid_validated() {
-    OrderItem orderItem = new OrderItem();
+    OrderDTO.OrderItem orderItem = new OrderDTO.OrderItem();
     orderItem.setPrice("100");
     PriceValidator validator = new PriceValidator();
 

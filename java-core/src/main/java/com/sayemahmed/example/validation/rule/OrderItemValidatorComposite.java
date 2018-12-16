@@ -13,34 +13,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.codesod.example.validation;
+package com.sayemahmed.example.validation.rule;
+
+import com.sayemahmed.example.validation.OrderDTO.OrderItem;
 
 import java.util.List;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.RequiredArgsConstructor;
 
-@Getter
-@Setter
-@ToString
-public class OrderDTO {
+@RequiredArgsConstructor
+class OrderItemValidatorComposite implements OrderItemValidator {
+  private final List<OrderItemValidator> validators;
 
-  @NotNull
-  private String customerId;
-
-  @NotNull
-  @Size(min = 1)
-  private List<OrderItem> orderItems;
-
-  @Getter
-  @Setter
-  @ToString
-  public static class OrderItem {
-    private String menuId;
-    private String description;
-    private String price;
-    private Integer quantity;
+  @Override
+  public ErrorNotification validate(OrderItem orderItem) {
+    ErrorNotification errorNotification = new ErrorNotification();
+    validators.stream()
+        .map(validator -> validator.validate(orderItem))
+        .forEach(errorNotification::addAll);
+    return errorNotification;
   }
 }

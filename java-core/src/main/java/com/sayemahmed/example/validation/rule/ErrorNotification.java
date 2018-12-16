@@ -13,23 +13,33 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.codesod.example.validation.rule;
+package com.sayemahmed.example.validation.rule;
 
-import com.codesod.example.validation.OrderDTO.OrderItem;
-
+import java.util.ArrayList;
 import java.util.List;
-import lombok.RequiredArgsConstructor;
 
-@RequiredArgsConstructor
-class OrderItemValidatorComposite implements OrderItemValidator {
-  private final List<OrderItemValidator> validators;
+import static java.util.stream.Collectors.joining;
 
-  @Override
-  public ErrorNotification validate(OrderItem orderItem) {
-    ErrorNotification errorNotification = new ErrorNotification();
-    validators.stream()
-        .map(validator -> validator.validate(orderItem))
-        .forEach(errorNotification::addAll);
-    return errorNotification;
+/**
+ * @author MD Sayem Ahmed
+ */
+public class ErrorNotification {
+  private List<String> errors = new ArrayList<>();
+
+  public void addAll(ErrorNotification errorNotification) {
+    this.errors.addAll(errorNotification.errors);
+  }
+
+  public boolean hasError() {
+    return !errors.isEmpty();
+  }
+
+  public String getAllErrors() {
+    return errors.stream()
+        .collect(joining(", "));
+  }
+
+  void addError(String message) {
+    this.errors.add(message);
   }
 }
