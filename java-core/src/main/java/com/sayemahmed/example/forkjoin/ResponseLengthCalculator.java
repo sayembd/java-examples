@@ -81,9 +81,10 @@ public class ResponseLengthCalculator extends RecursiveTask<Map<String, Integer>
           .create()
           .disableRedirectHandling()
           .build();
-      try {
-        log.info("Executing blocking request for {}", link);
-        CloseableHttpResponse response = client.execute(headRequest);
+
+      log.info("Executing blocking request for {}", link);
+
+      try (client; CloseableHttpResponse response = client.execute(headRequest)) {
         log.info("HTTP request for link {} has been executed", link);
         this.response = EntityUtils.toString(response.getEntity());
       } catch (IOException e) {
