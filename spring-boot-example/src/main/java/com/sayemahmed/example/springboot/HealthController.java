@@ -25,4 +25,16 @@ public class HealthController {
   public String health() {
     return "up";
   }
+
+  @GetMapping("/slower-health")
+  public String slowHealth() throws InterruptedException {
+    Thread.sleep(5_000L);
+    return "up";
+  }
+
+  @GetMapping("/slowest-health")
+  public String slowestHealth() throws InterruptedException {
+    Thread.sleep(20_000L);
+    return "up";
+  }
 }
