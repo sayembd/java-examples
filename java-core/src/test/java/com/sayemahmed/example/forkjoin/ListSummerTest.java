@@ -1,11 +1,10 @@
 package com.sayemahmed.example.forkjoin;
 
-import org.junit.Test;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
 import java.util.concurrent.ForkJoinPool;
-
-import static org.assertj.core.api.Assertions.assertThat;
+import org.junit.jupiter.api.Test;
 
 public class ListSummerTest {
 

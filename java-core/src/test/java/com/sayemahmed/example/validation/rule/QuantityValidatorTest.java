@@ -15,11 +15,10 @@
  */
 package com.sayemahmed.example.validation.rule;
 
-import com.sayemahmed.example.validation.OrderDTO;
-
 import static org.assertj.core.api.Assertions.assertThat;
 
-import org.junit.Test;
+import com.sayemahmed.example.validation.OrderDTO;
+import org.junit.jupiter.api.Test;
 
 public class QuantityValidatorTest {
 

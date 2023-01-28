@@ -15,15 +15,14 @@
  */
 package com.sayemahmed.example.validation.rule;
 
-import com.sayemahmed.example.validation.MenuRepository;
-import com.sayemahmed.example.validation.OrderDTO;
-
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Matchers.any;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-import org.junit.Test;
+import com.sayemahmed.example.validation.MenuRepository;
+import com.sayemahmed.example.validation.OrderDTO;
+import org.junit.jupiter.api.Test;
 
 public class MenuValidatorTest {
 

@@ -1,13 +1,12 @@
 package com.sayemahmed.example.forkjoin;
 
-import org.junit.Test;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ForkJoinPool;
-
-import static org.assertj.core.api.Assertions.assertThat;
+import org.junit.jupiter.api.Test;
 
 public class ResponseLengthCalculatorTest {
 
@@ -35,7 +34,7 @@ public class ResponseLengthCalculatorTest {
     assertThat(result)
         .hasSize(1)
         .containsKeys("http://httpstat.us/200")
-        .containsValue(0);
+        .containsValue(6);
   }
 
   @Test

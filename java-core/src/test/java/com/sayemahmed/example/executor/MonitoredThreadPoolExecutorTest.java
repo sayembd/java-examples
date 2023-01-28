@@ -15,16 +15,15 @@
  */
 package com.sayemahmed.example.executor;
 
-import com.codahale.metrics.ConsoleReporter;
-import com.codahale.metrics.MetricRegistry;
-import lombok.extern.slf4j.Slf4j;
-import org.junit.Test;
-
-import java.util.concurrent.LinkedBlockingQueue;
-import java.util.stream.IntStream;
-
 import static java.util.concurrent.TimeUnit.MINUTES;
 import static java.util.concurrent.TimeUnit.SECONDS;
+
+import com.codahale.metrics.ConsoleReporter;
+import com.codahale.metrics.MetricRegistry;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.stream.IntStream;
+import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.Test;
 
 /**
  * @author MD Sayem Ahmed
