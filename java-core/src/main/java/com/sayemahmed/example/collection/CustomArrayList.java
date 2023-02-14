@@ -13,8 +13,11 @@ public class CustomArrayList<E> implements List<E> {
   private int nextIndex;
 
   public CustomArrayList() {
-    elements = new Object[1];
-    nextIndex = 0;
+    this(1);
+  }
+
+  public CustomArrayList(int initialCapacity) {
+    elements = new Object[initialCapacity];
   }
 
   @Override
@@ -55,10 +58,10 @@ public class CustomArrayList<E> implements List<E> {
 
   @Override
   public void add(int index, E element) {
-    if (index < 0 || index > size()) {
+    if (index < 0 || index > nextIndex) {
       throw new IndexOutOfBoundsException("index must be between 0 and " + size());
     }
-    if (index == size()) {
+    if (index == nextIndex) {
       add(element);
       return;
     }
